@@ -1,15 +1,29 @@
 {
-    "name": "typescriptlibrarybase",
+    "name": "@phong/viral-viewer",
     "version": "1.0.0",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "files": ["dist"],
+    "files": [
+        "dist",
+        "LICENSE",
+        "README.md"
+    ],
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "npx tsc"
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "devDependencies": {
+        "@types/three": "^0.152.1",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "camera-controls": "^2.3.7",
+        "lz-string": "^1.5.0",
+        "potree-core-viral": "^0.2.3",
+        "three": "^0.152.2"
+    }
 }

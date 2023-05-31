@@ -1,1 +1,2 @@
-export * from "./components/compact"
+export * from './types';
+export * from './viral-viewer-api';
