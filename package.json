@@ -1,6 +1,6 @@
 {
     "name": "viral-viewer-2",
-    "version": "0.0.1",
+    "version": "0.0.7",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -17,6 +17,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@types/node": "^20.2.5",
         "@types/three": "^0.152.1",
         "typescript": "^5.0.4"
     },

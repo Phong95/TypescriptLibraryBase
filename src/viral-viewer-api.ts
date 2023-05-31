@@ -73,11 +73,11 @@ export class ViralViewerApi {
     }
     public setupCamera() {
         this.camera = new THREE.PerspectiveCamera(60, this.targetElement.offsetWidth / this.targetElement.offsetHeight, 0.01, 2000000);
+        this.camera.position.set(0, 0, 2);
         if (this.options && this.options.cameraZUp) {
             this.camera.up.set(0, 0, 1);
+            this.camera.position.set(100, 100, 0);
         }
-        this.camera.position.set(0, 0, 2);
-
         this.cameraControls = new CameraControls(this.camera, this.renderer.domElement);
         // this.cameraControls.dollyToCursor = true;
         this.cameraControls.infinityDolly = true;
