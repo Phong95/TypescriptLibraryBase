@@ -1,0 +1,15 @@
+{
+    "name": "typescriptlibrarybase",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": ["dist"],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npx tsc"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
