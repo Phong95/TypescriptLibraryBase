@@ -1,6 +1,6 @@
 {
-    "name": "@phong/viral-viewer",
-    "version": "1.0.0",
+    "name": "viral-viewer-2",
+    "version": "0.0.1",
     "description": "",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
