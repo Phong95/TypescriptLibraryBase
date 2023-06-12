@@ -18,7 +18,7 @@ export class ViralViewerPointCloudLoader {
      * @param urlHierarchy endpoint to download hierarchy.bin
      * @param pointBudget 
      */
-    public load(metadataUrl: string, urlOcbinTree: string, urlHierarchy: string, pointBudget: number = 2000000) {
+    public load(metadataUrl: string, urlOcbinTree: string, urlHierarchy: string, pointBudget: number = 2000000, callbackOnSuccess = (pco: PointCloudOctree) => { }) {
         this.potree.pointBudget = pointBudget;
         this.potree.loadPointCloudCustom(
             metadataUrl,
@@ -33,6 +33,7 @@ export class ViralViewerPointCloudLoader {
 
             this.viralViewerApi.scene.add(pco);
             this.pointClouds.push(pco);
+            callbackOnSuccess(pco);
         });
     }
     public anim() {
