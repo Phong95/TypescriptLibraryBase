@@ -38,14 +38,14 @@ export class ViralViewerPointCloudLoader {
     }
     public anim() {
         const delta = this.viralViewerApi.clock.getDelta();
-        const updated = this.viralViewerApi.cameraControls.update(delta);
-        this.potree.updatePointClouds(this.pointClouds, this.viralViewerApi.camera, this.viralViewerApi.renderer);
+        const updated = this.viralViewerApi.viralCamera.cameraControls.update(delta);
+        this.potree.updatePointClouds(this.pointClouds, this.viralViewerApi.viralCamera.camera, this.viralViewerApi.renderer);
         // if ( elapsed > 30 ) { return; }
 
         requestAnimationFrame(() => { this.anim() });
         // console.log(updated)
         if (updated) {
-            this.viralViewerApi.renderer.render(this.viralViewerApi.scene, this.viralViewerApi.camera);
+            this.viralViewerApi.renderer.render(this.viralViewerApi.scene, this.viralViewerApi.viralCamera.camera);
         }
     }
 }
