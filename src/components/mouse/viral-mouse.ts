@@ -1,15 +1,17 @@
 import { Vector2 } from "three";
+import { ViralViewerApi } from "../../viral-viewer-api";
 
 export class ViralMouse {
     position = new Vector2();
     rawPosition = new Vector2();
 
-    constructor(domElement: HTMLCanvasElement) {
-        this.setupMousePositionUpdate(domElement);
+    constructor(public viralViewerApi: ViralViewerApi) {
+        this.setupMousePositionUpdate(this.viralViewerApi.viralRenderer.renderer.domElement);
     }
 
     private setupMousePositionUpdate(domElement: HTMLCanvasElement) {
         domElement.onmousemove = (event: MouseEvent) => {
+            console.log(event)
             this.rawPosition.x = event.clientX;
             this.rawPosition.y = event.clientY;
             const bounds = domElement.getBoundingClientRect();

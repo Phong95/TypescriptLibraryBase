@@ -2,14 +2,9 @@ import { Potree, PointSizeType, PointShape, PointColorType, PointCloudOctree } f
 import { ViralViewerApi } from "../../viral-viewer-api";
 
 export class ViralViewerPointCloudLoader {
-    potree: Potree;
+    potree: Potree = new Potree();
     pointClouds: PointCloudOctree[] = [];
-    viralViewerApi: ViralViewerApi;
-    constructor(viralViewerApi: ViralViewerApi) {
-        if (viralViewerApi) {
-            this.viralViewerApi = viralViewerApi;
-        }
-        this.potree = new Potree();
+    constructor(public viralViewerApi: ViralViewerApi) {
     }
     /**
      * 
@@ -31,21 +26,9 @@ export class ViralViewerPointCloudLoader {
             material.shape = PointShape.CIRCLE;
             material.pointColorType = PointColorType.RGB;
 
-            this.viralViewerApi.scene.add(pco);
+            this.viralViewerApi.viralScene.addObject(pco);
             this.pointClouds.push(pco);
             callbackOnSuccess(pco);
         });
-    }
-    public anim() {
-        const delta = this.viralViewerApi.clock.getDelta();
-        const updated = this.viralViewerApi.viralCamera.cameraControls.update(delta);
-        this.potree.updatePointClouds(this.pointClouds, this.viralViewerApi.viralCamera.camera, this.viralViewerApi.renderer);
-        // if ( elapsed > 30 ) { return; }
-
-        requestAnimationFrame(() => { this.anim() });
-        // console.log(updated)
-        if (updated) {
-            this.viralViewerApi.renderer.render(this.viralViewerApi.scene, this.viralViewerApi.viralCamera.camera);
-        }
     }
 }

@@ -4,15 +4,13 @@ import { BufferAttribute, BufferGeometry, EdgesGeometry, LineBasicMaterial, Line
 
 export class ViralViewerWorker {
     public worker: Worker;
-    public viralViewerApi: ViralViewerApi;
-    constructor(main: ViralViewerApi, scriptUrl: string) {
+    constructor(public viralViewerApi: ViralViewerApi, scriptUrl: string) {
         this.worker = new Worker(scriptUrl, { type: "module" });
-        this.viralViewerApi = main;
     }
     public loadModel(model: ViralViewerRevitProject, callbackOnSuccess = () => { }) {
         const noneStructuralMesh = new Mesh();
         noneStructuralMesh.name = "Viral Model";
-        this.viralViewerApi.scene.add(noneStructuralMesh);
+        this.viralViewerApi.viralScene.addObject(noneStructuralMesh);
         this.worker.onmessage = (m) => {
             switch (m.data.type) {
                 case 0:
@@ -40,7 +38,7 @@ export class ViralViewerWorker {
                     const childMesh = new Mesh(geometry, newMaterial);
                     childMesh.add(line);
                     noneStructuralMesh.add(childMesh);
-                    this.viralViewerApi.rerender();
+                    this.viralViewerApi.viralRenderer.render();
                     break;
                 case 2:
                     let buffer2 = m.data.buffer;

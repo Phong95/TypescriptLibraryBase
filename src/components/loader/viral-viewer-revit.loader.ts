@@ -1,13 +1,11 @@
 import * as THREE from "three";
 import { RenderMaterial, RevitTransform, ViralPoint, ViralViewerRevitProject } from "../../types";
+import { ViralViewerApi } from "../../viral-viewer-api";
 
 export class ViralViewerRevitLoader {
-    scene: THREE.Scene;
 
-    constructor(scene: THREE.Scene) {
-        if (scene) {
-            this.scene = scene;
-        }
+    constructor(public viralViewerApi: ViralViewerApi) {
+
     }
     public loadRevit(model: ViralViewerRevitProject) {
         this.progressNoneStructuralGeometries(model);
@@ -24,7 +22,7 @@ export class ViralViewerRevitLoader {
         }
         modelMesh.castShadow = true;
         modelMesh.receiveShadow = true;
-        this.scene.add(modelMesh);
+        this.viralViewerApi.viralScene.addObject(modelMesh);
     }
     private progressNoneStructuralGeometries(model: ViralViewerRevitProject) {
         const modelMesh = new THREE.Mesh();
@@ -41,7 +39,7 @@ export class ViralViewerRevitLoader {
                 geometry.Instances
             );
         }
-        this.scene.add(modelMesh);
+        this.viralViewerApi.viralScene.addObject(modelMesh);
     }
     private addCustomMesh3(mesh: THREE.Mesh, indices: number[], vertices: ViralPoint[], material: RenderMaterial) {
 

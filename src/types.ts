@@ -41,8 +41,7 @@ export interface RevitTransform {
     BasisZ: ViralPoint;
     Offset: ViralPoint;
 }
-export class ViralViewerState{
+export interface ViralViewerState{
     CameraPoint:ViralPoint;
     TargetPoint:ViralPoint;
-    result: any;
 }

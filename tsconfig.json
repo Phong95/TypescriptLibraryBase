@@ -109,10 +109,17 @@
 // }
 {
   "compilerOptions": {
+    /* Check null and force initial value for property */
+    "strict":true,
+    "strictNullChecks":true,
+    "strictPropertyInitialization": true,
+    /*Target output javascript*/
     "target": "es2016",       
     "module": "commonjs",      
     "sourceMap": true,
+    /*Export javascript to folder*/
     "outDir": "./dist",
+    /*Not allow any type*/
     "noImplicitAny": true,
     "declaration": true,
     "allowJs": true
