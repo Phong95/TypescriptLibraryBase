@@ -16,8 +16,10 @@ export class ViralCamera {
     public setupCamera() {
         this.camera = new PerspectiveCamera(60, this.targetElement.offsetWidth / this.targetElement.offsetHeight, 0.01, 2000000);
         this.camera.position.set(0, 0, 2);
+        if (this.viralViewerApi.options && this.viralViewerApi.options.cameraZUp) {
         this.camera.up.set(0, 0, 1);
         this.camera.position.set(100, 100, 0);
+        }
         this.cameraControls = new CameraControls(this.camera, this.viralViewerApi.viralRenderer.renderer.domElement);
 
         // this.cameraControls.dollyToCursor = true;

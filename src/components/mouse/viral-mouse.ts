@@ -11,7 +11,6 @@ export class ViralMouse {
 
     private setupMousePositionUpdate(domElement: HTMLCanvasElement) {
         domElement.onmousemove = (event: MouseEvent) => {
-            console.log(event)
             this.rawPosition.x = event.clientX;
             this.rawPosition.y = event.clientY;
             const bounds = domElement.getBoundingClientRect();

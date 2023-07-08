@@ -13,6 +13,12 @@ export class ViralRenderer {
         powerPreference: "high-performance",
     });
     constructor(public viralViewerApi: ViralViewerApi) {
+        this.setupRenderer();
+    }
+    public setupRenderer() {
+        this.renderer.setClearColor(0x000000, 0);
+        this.renderer.setSize(this.viralViewerApi.targetElement.offsetWidth, this.viralViewerApi.targetElement.offsetHeight);
+        this.viralViewerApi.targetElement.appendChild(this.renderer.domElement);
     }
     public render() {
         if (this.viralViewerApi.viralCamera && this.viralViewerApi.viralCamera.camera)
