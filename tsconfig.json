@@ -110,7 +110,7 @@
 {
   "compilerOptions": {
     /* Check null and force initial value for property */
-    "strict":true,
+    // "strict":true,
     "strictNullChecks":true,
     "strictPropertyInitialization": true,
     /*Target output javascript*/
