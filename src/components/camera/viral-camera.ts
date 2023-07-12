@@ -13,6 +13,7 @@ import {
     Raycaster,
     PerspectiveCamera,
     Object3D,
+    MathUtils
 } from 'three';
 const subsetOfTHREE = {
     Vector2: Vector2,
@@ -24,6 +25,7 @@ const subsetOfTHREE = {
     Box3: Box3,
     Sphere: Sphere,
     Raycaster: Raycaster,
+    MathUtils:MathUtils,
 };
 
 
