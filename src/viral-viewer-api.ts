@@ -5,49 +5,11 @@ import { CompressProcessor } from "./components/compress/compress.processor";
 import { ViralViewerWorker } from "./components/worker/viral-viewer.worker";
 import { ViralViewerPointCloudLoader } from "./components/loader/viral-viewer-point-cloud.loader";
 import { ViralCamera } from "./components/camera/viral-camera";
-import {
-    Vector2,
-    Vector3,
-    Vector4,
-    Quaternion,
-    Matrix4,
-    Spherical,
-    Box3,
-    Sphere,
-    Raycaster,
-    MathUtils,
-    Scene,
-    Clock,
-    WebGLRenderer,
-    PerspectiveCamera,
-    DirectionalLight,
-    AmbientLight,
-    Mesh,
-    BoxGeometry,
-    MeshStandardMaterial,
-    AxesHelper,
-    TextureLoader,
-    MeshBasicMaterial,
-    DoubleSide,
-    PlaneGeometry,
-} from 'three';
 import { ViralMouse } from "./components/mouse/viral-mouse";
 import { ViralScene } from "./components/scene/viral-scene";
 import { ViralRenderer } from "./components/renderer/viral-renderer";
 
-const subsetOfTHREE = {
-    Vector2: Vector2,
-    Vector3: Vector3,
-    Vector4: Vector4,
-    Quaternion: Quaternion,
-    Matrix4: Matrix4,
-    Spherical: Spherical,
-    Box3: Box3,
-    Sphere: Sphere,
-    Raycaster: Raycaster,
-};
 
-CameraControls.install({ THREE: subsetOfTHREE });
 
 export class ViralViewerApi {
     options: ViewerOptions;

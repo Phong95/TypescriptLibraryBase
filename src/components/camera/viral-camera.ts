@@ -1,7 +1,31 @@
 import CameraControls from "camera-controls";
 import { ViewerOptions, ViralPoint, ViralViewerState } from "../../types";
 import { ViralViewerApi } from "../../viral-viewer-api";
-import { Box3, Object3D, PerspectiveCamera, Raycaster, Vector2, Vector3 } from "three";
+import {
+    Vector2,
+    Vector3,
+    Vector4,
+    Quaternion,
+    Matrix4,
+    Spherical,
+    Box3,
+    Sphere,
+    Raycaster,
+    PerspectiveCamera,
+    Object3D,
+} from 'three';
+const subsetOfTHREE = {
+    Vector2: Vector2,
+    Vector3: Vector3,
+    Vector4: Vector4,
+    Quaternion: Quaternion,
+    Matrix4: Matrix4,
+    Spherical: Spherical,
+    Box3: Box3,
+    Sphere: Sphere,
+    Raycaster: Raycaster,
+};
+
 
 export class ViralCamera {
     raycaster: Raycaster | null = null;
@@ -17,9 +41,10 @@ export class ViralCamera {
         this.camera = new PerspectiveCamera(60, this.targetElement.offsetWidth / this.targetElement.offsetHeight, 0.01, 2000000);
         this.camera.position.set(0, 0, 2);
         if (this.viralViewerApi.options && this.viralViewerApi.options.cameraZUp) {
-        this.camera.up.set(0, 0, 1);
-        this.camera.position.set(100, 100, 0);
+            this.camera.up.set(0, 0, 1);
+            this.camera.position.set(100, 100, 0);
         }
+        CameraControls.install({ THREE: subsetOfTHREE });
         this.cameraControls = new CameraControls(this.camera, this.viralViewerApi.viralRenderer.renderer.domElement);
 
         // this.cameraControls.dollyToCursor = true;
@@ -63,7 +88,7 @@ export class ViralCamera {
             let result: ViralViewerState = {
                 CameraPoint: { X: 0, Y: 0, Z: 0 },
                 TargetPoint: { X: 0, Y: 0, Z: 0 },
-                
+
             };
             let cameraPoint1: Vector3 = new Vector3(0, 0, 0);
             let point = this.cameraControls.getPosition(cameraPoint1!);
