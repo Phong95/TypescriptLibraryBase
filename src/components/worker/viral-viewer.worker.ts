@@ -37,7 +37,6 @@ export class ViralViewerWorker {
                     const childMesh = new Mesh(geometry, newMaterial);
                     childMesh.add(line);
                     noneStructuralMesh.add(childMesh);
-                    this.viralViewerApi.viralRenderer.render();
                     break;
                 case 2:
                     let buffer2 = m.data.buffer;

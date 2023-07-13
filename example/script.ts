@@ -26,7 +26,7 @@ export class TestingViralViewerLib {
 
             viralViewerApi.viralRenderer.anim();
             if (viralViewerApi.worker) {
-                let model = await viralViewerApi.compressProcessor.decompressed('./public/MarubeniCoffee.json');
+                let model = await viralViewerApi.compressProcessor.decompressed('./public/Cofico_Office-FM-220829.json');
                 if (model) {
                     viralViewerApi.worker.loadModel(model, () => {
                         viralViewerApi.viralCamera.focusModelByName('Viral Model')
