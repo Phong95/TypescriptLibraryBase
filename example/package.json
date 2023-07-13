@@ -1,5 +1,8 @@
 {
     "devDependencies": {
         "vite": "^4.2.1"
+    },
+    "dependencies": {
+        "viral-viewer-2": "^0.1.9"
     }
 }

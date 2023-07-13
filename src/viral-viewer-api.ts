@@ -40,6 +40,7 @@ export class ViralViewerApi {
         this.viralMouse = new ViralMouse(this);
         this.revitLoader = new ViralViewerRevitLoader(this);
         this.pointCloudLoader = new ViralViewerPointCloudLoader(this);
+        this.worker = new ViralViewerWorker(this);
 
     }
     public initial(scriptUrl?: string) {

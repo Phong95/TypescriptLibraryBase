@@ -1,10 +1,9 @@
 import { ViralViewerApi } from "../../viral-viewer-api";
 import { ViralViewerRevitProject } from "../../types";
 import { BufferAttribute, BufferGeometry, EdgesGeometry, LineBasicMaterial, LineSegments, Matrix4, Mesh, MeshPhongMaterial } from "three";
-
 export class ViralViewerWorker {
     public worker: Worker;
-    constructor(public viralViewerApi: ViralViewerApi, scriptUrl: string) {
+    constructor(public viralViewerApi: ViralViewerApi, scriptUrl: string = "./node_modules/viral-viewer-2/dist/components/worker-script/load-model-worker.script.js") {
         this.worker = new Worker(scriptUrl, { type: "module" });
     }
     public loadModel(model: ViralViewerRevitProject, callbackOnSuccess = () => { }) {

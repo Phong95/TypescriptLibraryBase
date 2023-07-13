@@ -1,4 +1,4 @@
-
+import { ViralViewerApi } from 'viral-viewer-2';
 export class CubeNavigation {
     constructor(public container: HTMLElement) {
 
@@ -17,11 +17,32 @@ export class CubeNavigation {
         }
     }
 }
-console.log('hello world')
-const container = document.getElementById('container');
-console.log(container)
-if (container) {
-    let cubeNavigation = new CubeNavigation(container);
-    cubeNavigation.injectCubeWrapperElement();
-}
+export class TestingViralViewerLib {
+    public async loadModel() {
+        const container = document.getElementById('container');
+        if (container) {
+            let viralViewerApi = new ViralViewerApi({ cameraZUp: false, container: container });
+            console.log(viralViewerApi)
 
+            viralViewerApi.viralRenderer.anim();
+            if (viralViewerApi.worker) {
+                let model = await viralViewerApi.compressProcessor.decompressed('./public/MarubeniCoffee.json');
+                if (model) {
+                    viralViewerApi.worker.loadModel(model, () => {
+                        viralViewerApi.viralCamera.focusModelByName('Viral Model')
+                    })
+                }
+
+            }
+        }
+    }
+}
+// console.log('hello world')
+// const container = document.getElementById('container');
+// console.log(container)
+// if (container) {
+//     let cubeNavigation = new CubeNavigation(container);
+//     cubeNavigation.injectCubeWrapperElement();
+// }
+let testingViralViewerLib = new TestingViralViewerLib();
+testingViralViewerLib.loadModel();
