@@ -6,7 +6,9 @@ import {
     BoxGeometry,
     MeshStandardMaterial,
     AxesHelper,
-    Object3D
+    Object3D,
+    MeshBasicMaterial,
+    SphereGeometry
 } from 'three';
 import { ViralViewerApi } from '../../viral-viewer-api';
 
@@ -15,11 +17,15 @@ export class ViralScene {
     objects: Object3D[] = [];
     constructor(public viralViewerApi: ViralViewerApi) {
         this.setupLights();
+        this.addPivotPoint();
     }
-    public addObject (object:Object3D)
-    {
+    public addObject(object: Object3D) {
         this.scene.add(object);
         this.objects.push(object);
+    }
+    public getObjectByName(name: string) {
+        var object = this.scene.getObjectByName(name);
+        return object;
     }
     public setupLights() {
         const light1 = new DirectionalLight(0xffeeff, 0.8);
@@ -52,5 +58,17 @@ export class ViralScene {
             this.addObject(axesHelper);
         }
 
+    }
+    public addPivotPoint() {
+        const sphereGeometry = new SphereGeometry(1, 32, 32);
+        const sphereMaterial = new MeshBasicMaterial({
+            color: 0x659F51,
+            transparent: true,
+            opacity: 0.5
+        });
+        const sphere = new Mesh(sphereGeometry, sphereMaterial);
+        sphere.name = "Viral Pivot Point";
+        sphere.visible = false;
+        this.addObject(sphere)
     }
 }
