@@ -43,10 +43,8 @@ export class TestingViralViewerLib {
 
     private handleClick = async (_event: Event) => {
         if (this.viralViewerApi) {
-            console.log(this.viralViewerApi.viralScene.objects)
             let result = this.viralViewerApi.viralCamera.clientToWorld();
             if (result && result.length > 0) {
-                console.log(result[0])
                 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
                 const sphereMaterial = new THREE.MeshBasicMaterial({
                     color: 0xff0000,
@@ -55,7 +53,7 @@ export class TestingViralViewerLib {
                 });
                 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
                 sphere.position.copy(result[0].point);
-                sphere.name = "Viral Target Point"
+                sphere.name = "Viral Pivot Point"
                 this.viralViewerApi.viralScene.addObject(sphere);
                 this.viralViewerApi.viralRenderer.render();
                 this.viralViewerApi.viralCamera.camera?.updateMatrixWorld();
