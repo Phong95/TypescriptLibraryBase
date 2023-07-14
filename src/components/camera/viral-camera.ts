@@ -136,18 +136,27 @@ export class ViralCamera {
     }
 
     public updateMainCamera() {
-        if(this.viralViewerApi.viralNavigationCube.cubeCamera && this.viralViewerApi.viralNavigationCube.cubeCamera.camera && this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls)
-        {
+        if (this.viralViewerApi.viralNavigationCube.cubeCamera && this.viralViewerApi.viralNavigationCube.cubeCamera.camera && this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls) {
+
             let cameraControlTarget = new Vector3();
-            this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls!.getTarget(cameraControlTarget)
+            this.cameraControls!.getTarget(cameraControlTarget)
             let cameraControlPosition = new Vector3();
-            this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls!.getPosition(cameraControlPosition)
-            //Hieu 2 vector
-            let vector = cameraControlPosition.sub(cameraControlTarget);
-            //Chuan hoa
+            this.cameraControls!.getPosition(cameraControlPosition)
+            //Hiệu 2 vector của main
+            let mainVector = cameraControlTarget.sub(cameraControlPosition);
+            let length = mainVector.length();
+
+
+            let cubeCameraControlTarget = new Vector3();
+            this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls!.getTarget(cubeCameraControlTarget)
+            let cubeCameraControlPosition = new Vector3();
+            this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls!.getPosition(cubeCameraControlPosition)
+            //Hiệu 2 vector của cube
+            let vector = cubeCameraControlTarget.sub(cubeCameraControlPosition);
+            //Chuẩn hoá
             vector.normalize();
-            //Do lon vector bang 2
-            vector.multiplyScalar(2);
+            //Chỉnh độ lớn của vector về độ lớn khoảng cách giữa camera chính và điểm nhìn trước đó
+            vector.multiplyScalar(length);
             this.cameraControls?.setPosition(vector.x, vector.y, vector.z);
         }
 

@@ -22,8 +22,6 @@ export class TestingViralViewerLib {
         const container = document.getElementById('container');
         if (container) {
             this.viralViewerApi = new ViralViewerApi({ cameraZUp: false, container: container });
-            this.viralViewerApi!.viralAnimation.mainAnimation();
-            this.viralViewerApi!.viralAnimation.cubeAnimation();
             if (this.viralViewerApi.worker) {
                 // let model = await this.viralViewerApi.compressProcessor.decompressed('./public/Cofico_Office-FM-220829.json');
                 let model = await this.viralViewerApi.compressProcessor.decompressed('./public/MarubeniCoffee.json');
