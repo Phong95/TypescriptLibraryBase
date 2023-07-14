@@ -3,6 +3,6 @@
         "vite": "^4.2.1"
     },
     "dependencies": {
-        "viral-viewer-2": "^0.2.4"
+        "viral-viewer-2": "^0.4.8"
     }
 }

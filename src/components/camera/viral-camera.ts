@@ -25,7 +25,7 @@ const subsetOfTHREE = {
     Box3: Box3,
     Sphere: Sphere,
     Raycaster: Raycaster,
-    MathUtils:MathUtils,
+    MathUtils: MathUtils,
 };
 
 
@@ -133,5 +133,23 @@ export class ViralCamera {
             return this.raycaster.intersectObjects(items);
         }
         return null;
+    }
+
+    public updateMainCamera() {
+        if(this.viralViewerApi.viralNavigationCube.cubeCamera && this.viralViewerApi.viralNavigationCube.cubeCamera.camera && this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls)
+        {
+            let cameraControlTarget = new Vector3();
+            this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls!.getTarget(cameraControlTarget)
+            let cameraControlPosition = new Vector3();
+            this.viralViewerApi.viralNavigationCube.cubeCamera.cameraControls!.getPosition(cameraControlPosition)
+            //Hieu 2 vector
+            let vector = cameraControlPosition.sub(cameraControlTarget);
+            //Chuan hoa
+            vector.normalize();
+            //Do lon vector bang 2
+            vector.multiplyScalar(2);
+            this.cameraControls?.setPosition(vector.x, vector.y, vector.z);
+        }
+
     }
 }

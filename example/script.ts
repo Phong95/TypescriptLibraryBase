@@ -22,15 +22,16 @@ export class TestingViralViewerLib {
         const container = document.getElementById('container');
         if (container) {
             this.viralViewerApi = new ViralViewerApi({ cameraZUp: false, container: container });
-            console.log(this.viralViewerApi)
-
-            this.viralViewerApi.viralRenderer.anim();
+            this.viralViewerApi!.viralAnimation.mainAnimation();
+            this.viralViewerApi!.viralAnimation.cubeAnimation();
             if (this.viralViewerApi.worker) {
                 // let model = await this.viralViewerApi.compressProcessor.decompressed('./public/Cofico_Office-FM-220829.json');
                 let model = await this.viralViewerApi.compressProcessor.decompressed('./public/MarubeniCoffee.json');
                 if (model) {
                     this.viralViewerApi.worker.loadModel(model, () => {
                         this.viralViewerApi!.viralCamera.focusModelByName('Viral Model');
+
+
                         // this.injectCubeWrapperElement();
                     })
                 }
@@ -299,9 +300,9 @@ export class TestingViralViewerLib {
     }
 }
 let testingViralViewerLib = new TestingViralViewerLib();
-testingViralViewerLib.injectCubeWrapperElement();
+// testingViralViewerLib.injectCubeWrapperElement();
 await testingViralViewerLib.loadModel();
-testingViralViewerLib.addCube()
+// testingViralViewerLib.addCube()
 
 
 
